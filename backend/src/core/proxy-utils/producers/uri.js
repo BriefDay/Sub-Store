@@ -151,13 +151,11 @@ export default function URI_Producer() {
         }
         if (
             [
-                'trojan',
                 'tuic',
                 'hysteria',
                 'hysteria2',
                 'juicity',
-                'anytls',
-                'trust-tunnel',
+                'trusttunnel',
             ].includes(proxy.type)
         ) {
             delete proxy.tls;
@@ -201,7 +199,9 @@ export default function URI_Producer() {
                         case 'v2ray-plugin':
                             query += encodeURIComponent(
                                 `v2ray-plugin;obfs=${opts.mode}${
-                                    opts.host ? ';obfs-host' + opts.host : ''
+                                    opts.host ? ';obfs-host=' + opts.host : ''
+                                }${opts.host ? ';host=' + opts.host : ''}${
+                                    opts.path ? ';path=' + opts.path : ''
                                 }${opts.tls ? ';tls' : ''}`,
                             );
                             break;
